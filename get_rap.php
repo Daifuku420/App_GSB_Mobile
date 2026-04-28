@@ -6,7 +6,6 @@ use App\Api\ReportHandler;
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
-// Il est recommandé de déplacer ces identifiants dans un fichier de configuration non versionné.
 $host = 'paulpax1.mysql.db';
 $port = '3306';
 $db = 'paulpax1';
@@ -29,7 +28,6 @@ try {
     ]);
 
 } catch (InvalidArgumentException $e) {
-    // Utilise le code de l'exception pour la réponse HTTP
     $responseCode = is_int($e->getCode()) && $e->getCode() >= 400 && $e->getCode() < 600 ? $e->getCode() : 400;
     http_response_code($responseCode);
     echo json_encode(["status" => $responseCode, "message" => $e->getMessage()]);
